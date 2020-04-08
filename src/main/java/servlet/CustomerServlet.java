@@ -1,7 +1,6 @@
 package servlet;
 
 import com.google.gson.Gson;
-import model.Car;
 import service.CarService;
 
 import javax.servlet.ServletException;
@@ -28,7 +27,7 @@ public class CustomerServlet extends HttpServlet {
         String licensePlate = req.getParameter("licensePlate");
         String message = "";
         try {
-            message = CarService.getInstance().buyCar(brand, model, licensePlate) ? "Byu successful" : "Buy failed!";
+            message = CarService.getInstance().sellCar(brand, model, licensePlate) ? "Byu successful" : "Buy failed!";
         } catch (Exception e) {
             message = "Buy failed! with error = "+ e.getLocalizedMessage();
             e.printStackTrace();

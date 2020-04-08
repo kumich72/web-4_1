@@ -1,7 +1,6 @@
 package service;
 
 import DAO.CarDao;
-import DAO.DailyReportDao;
 import model.Car;
 //import org.eclipse.jetty.server.session.JDBCSessionManager;
 import org.hibernate.Session;
@@ -14,6 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
+
+//    public static  Long money = Long.valueOf(0);
+//    public static  Long cars = Long.valueOf(0);
+//    public static void setMoneyNull() {
+//        money = Long.valueOf(0);
+//    }
+//    public static void setCarsNull() {
+//        cars = Long.valueOf(0);
+//    }
 
     private static CarService carService;
 
@@ -30,36 +38,29 @@ public class CarService {
         return carService;
     }
 
-
     public List<Car> getAllCars() {
         List<Car> cars = new ArrayList<>();
         try {
-            Session session =  sessionFactory.openSession();
-            CarDao carDao = new CarDao(session);
+            CarDao carDao = new CarDao(sessionFactory.openSession());
             return carDao.getAllCars();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return cars;
     }
 
     public boolean addCar(String brand, String model, String licensePlate, Long price) {
         try {
-            Session session =  sessionFactory.openSession();
-            CarDao carDao = new CarDao(session);
-            return carDao.addCar( brand, model, licensePlate, price);
+            return new CarDao(sessionFactory.openSession()).addCar( brand, model, licensePlate, price);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    public boolean buyCar(String brand, String model, String licensePlate) {
+    public boolean sellCar(String brand, String model, String licensePlate) {
         try {
-            Session session =  sessionFactory.openSession();
-            CarDao carDao = new CarDao(session);
-            return carDao.buyCar( brand, model, licensePlate);
+            return new CarDao(sessionFactory.openSession()).sellCar(brand, model, licensePlate);
         } catch (Exception e) {
             e.printStackTrace();
         }

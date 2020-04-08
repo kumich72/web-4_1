@@ -27,9 +27,7 @@ public class DailyReportServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doDelete(req, resp);
-        List<DailyReport> reports =  DailyReportService.getInstance().getAllDailyReports();
         CarService.getInstance().deleteAllCars();
         DailyReportService.getInstance().deleteAllDailyReports();
-
     }
 }

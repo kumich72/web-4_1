@@ -27,7 +27,6 @@ public class CarDao {
         cars = Long.valueOf(0);
     }
     public boolean addCar(String brand, String model, String licensePlate, Long price) {
-
         try {
             Transaction transaction = session.beginTransaction();
             Car car = new Car();
@@ -60,7 +59,7 @@ public class CarDao {
         return null;
     }
 
-    public boolean buyCar(String brand, String model, String licensePlate) {
+    public boolean sellCar(String brand, String model, String licensePlate) {
         try {
             Car car = getCarByParametrs(brand, model, licensePlate);
             if (car != null) {
