@@ -1,5 +1,6 @@
 package servlet;
 
+import com.google.gson.Gson;
 import model.DailyReport;
 import service.CarService;
 import service.DailyReportService;
@@ -17,11 +18,15 @@ public class DailyReportServlet extends HttpServlet {
 //отправив DELETE запрос на url "/report".
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Gson gson = new Gson();
+        String json = "";
         if (req.getPathInfo().contains("all")) {
-            DailyReportService.getInstance().getAllDailyReports();
+            json =  gson.toJson(DailyReportService.getInstance().getAllDailyReports());
         } else if (req.getPathInfo().contains("last")) {
             DailyReportService.getInstance().getLastReport();
         }
+        resp.getWriter().write(json);
+        resp.setStatus(200);
     }
 
     @Override

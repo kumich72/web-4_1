@@ -15,6 +15,8 @@ public class CustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
         String json = gson.toJson(CarService.getInstance().getAllCars());
+        resp.getWriter().write(json);
+        resp.setStatus(200);
     }
 //Каждый день в салон поступают машины разных марок. Машин одной марки может быть не более 10ти штук.
 //Покупатели могут запросить список имеющихся машин по url "/customer" используя GET запрос.
