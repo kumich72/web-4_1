@@ -23,7 +23,7 @@ public class DailyReportServlet extends HttpServlet {
         if (req.getPathInfo().contains("all")) {
             json =  gson.toJson(DailyReportService.getInstance().getAllDailyReports());
         } else if (req.getPathInfo().contains("last")) {
-            DailyReportService.getInstance().getLastReport();
+            json = gson.toJson(DailyReportService.getInstance().getLastReport());
         }
         resp.getWriter().write(json);
         resp.setStatus(200);
